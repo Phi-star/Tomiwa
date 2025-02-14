@@ -1,8 +1,9 @@
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Poppins', sans-serif; /* More readable font */
 }
 
 body {
@@ -10,6 +11,7 @@ body {
     text-align: center;
     overflow-x: hidden;
     background: black;
+    line-height: 1.6; /* Better spacing */
 }
 
 /* Background Video */
@@ -34,46 +36,100 @@ video {
     position: absolute;
     top: 30%;
     width: 100%;
+    padding: 20px;
     animation: fadeIn 3s ease-in-out;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 3.5rem; /* Slightly bigger */
+    font-weight: bold;
+    letter-spacing: 1.5px;
     animation: textGlow 3s infinite alternate;
 }
 
 p {
-    font-size: 1.5rem;
-    opacity: 0.8;
+    font-size: 1.6rem;
+    opacity: 0.9;
+    padding: 10px;
 }
 
-/* Tribute Section */
+/* Sections Styling */
 .tribute, .memory-section, .love-note, .valentine-section, .from-philip {
-    padding: 30px;
+    padding: 40px;
     border-radius: 20px;
-    width: 85%;
-    max-width: 650px;
-    margin: 40px auto;
-    background: rgba(255, 105, 180, 0.2);
-    box-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
+    width: 90%;
+    max-width: 700px;
+    margin: 50px auto;
+    background: rgba(255, 105, 180, 0.25);
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
     animation: fadeIn 2s ease-in-out;
 }
 
+/* Memory Text */
 .memory-text {
-    font-size: 18px;
+    font-size: 1.2rem;
     font-family: 'Poppins', sans-serif;
     background: rgba(255, 105, 180, 0.3);
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
+    font-weight: 500;
 }
 
 /* Image Styling */
-.love-image img, .valentine-section img {
-    width: 80%;
-    max-width: 350px;
-    border-radius: 20px;
+.love-image img, 
+.valentine-section img, 
+.beautiful-section img {
+    width: 60%;
+    max-width: 320px;
+    height: auto;
+    border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     animation: fadeIn 2.5s ease-in-out, pulseGlow 3s infinite ease-in-out;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Center images */
+.love-image, 
+.valentine-section, 
+.beautiful-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Hover Effect */
+.love-image img:hover, 
+.valentine-section img:hover, 
+.beautiful-section img:hover {
+    transform: scale(1.05);
+}
+
+/* Mobile Friendly */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.4rem;
+    }
+
+    .memory-text {
+        font-size: 1.1rem;
+    }
+
+    .tribute, .memory-section, .love-note, .valentine-section, .from-philip {
+        width: 95%;
+        padding: 30px;
+    }
+
+    .love-image img, 
+    .valentine-section img, 
+    .beautiful-section img {
+        width: 75%;
+        max-width: 280px;
+    }
 }
 
 /* Keyframe Animations */
@@ -83,12 +139,12 @@ p {
 }
 
 @keyframes textGlow {
-    from { text-shadow: 0 0 10px pink; }
-    to { text-shadow: 0 0 20px red; }
+    from { text-shadow: 0 0 15px pink; }
+    to { text-shadow: 0 0 25px red; }
 }
 
 @keyframes pulseGlow {
-    0% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); }
-    50% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.7); }
-    100% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); }
+    0% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.7); }
+    100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
 }
