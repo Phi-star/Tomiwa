@@ -1,19 +1,20 @@
-const videoList = [
-    "video1.mp4",  
-    "https://files.catbox.moe/3un2c9.mp4",  
-    "https://files.catbox.moe/qlhj9s.mp4"   
-];
+document.addEventListener("DOMContentLoaded", function () {
+    let audio = document.getElementById("background-music");
 
-let currentVideo = 0;
-const videoElement = document.getElementById("background-video");
-videoElement.src = videoList[currentVideo];
+    // Play music on user interaction (to bypass autoplay restrictions)
+    document.body.addEventListener("click", function () {
+        if (audio.paused) {
+            audio.play();
+        }
+    });
 
-videoElement.addEventListener("ended", () => {
-    currentVideo = (currentVideo + 1) % videoList.length;
-    videoElement.src = videoList[currentVideo];
-    videoElement.play();
+    // Smooth scrolling effect
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute("href")).scrollIntoView({
+                behavior: "smooth"
+            });
+        });
+    });
 });
-
-// Ensure music plays automatically
-const music = document.getElementById("background-music");
-document.body.addEventListener("click", () => music.play(), { once: true });
