@@ -1,35 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const videos = [
-        "https://files.catbox.moe/r7gqhe.mp4",
-        "https://files.catbox.moe/qlhj9s.mp4",
-        "https://files.catbox.moe/3un2c9.mp4"
-    ];
-
-    let currentVideo = 0;
     const videoElement = document.getElementById("background-video");
     const audio = document.getElementById("background-music");
 
-    // Function to change the video
-    function changeVideo() {
-        currentVideo = (currentVideo + 1) % videos.length;
-        videoElement.src = videos[currentVideo];
-        videoElement.load();
-        videoElement.play();
-    }
-
-    // Change video when the current one ends
-    videoElement.addEventListener("ended", changeVideo);
-
-    // Start with the first video
-    videoElement.src = videos[currentVideo];
+    // Set the single video source
+    videoElement.src = "https://files.catbox.moe/r7gqhe.mp4";
     videoElement.play();
 
-    // Play background music when user interacts (fixes autoplay issues)
-    document.body.addEventListener("click", function () {
+    // Ensure music plays when user interacts (fix autoplay issue)
+    function playAudio() {
         if (audio.paused) {
-            audio.play();
+            audio.play().catch(error => console.log("Autoplay blocked:", error));
         }
-    });
+    }
+
+    // Play music when the user clicks anywhere on the page
+    document.body.addEventListener("click", playAudio);
+    
+    // Also try to play music when the video starts
+    videoElement.addEventListener("play", playAudio);
 
     // Smooth scrolling effect for internal links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
