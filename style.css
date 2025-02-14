@@ -76,7 +76,8 @@ p {
 }
 
 /* Image Styling */
-.love-image img, 
+.love-image img,
+.single-image img, 
 .valentine-section img, 
 .beautiful-section img {
     width: 60%;
@@ -90,6 +91,7 @@ p {
 
 /* Center images */
 .love-image, 
+.single-image,
 .valentine-section, 
 .beautiful-section {
     display: flex;
