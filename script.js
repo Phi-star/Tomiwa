@@ -1,20 +1,37 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let audio = document.getElementById("background-music");
+    const audio = document.getElementById("background-music");
 
-    // Play music on user interaction (to bypass autoplay restrictions)
-    document.body.addEventListener("click", function () {
+    // Function to play music on user interaction
+    function playMusic() {
         if (audio.paused) {
-            audio.play();
+            audio.play()
+                .then(() => {
+                    document.body.removeEventListener("click", playMusic);
+                    document.body.removeEventListener("touchstart", playMusic);
+                })
+                .catch(error => console.error("Audio playback blocked:", error));
         }
-    });
+    }
 
-    // Smooth scrolling effect
+    // Add event listeners for user interaction (required for iOS & Chrome autoplay policies)
+    document.body.addEventListener("click", playMusic);
+    document.body.addEventListener("touchstart", playMusic);
+
+    // Ensure smooth scrolling works correctly
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute("href")).scrollIntoView({
-                behavior: "smooth"
-            });
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" });
+            }
         });
+    });
+
+    // Fix for iOS: Prevent the music from stopping when the device sleeps
+    document.addEventListener("visibilitychange", function () {
+        if (!document.hidden && audio.paused) {
+            audio.play();
+        }
     });
 });
