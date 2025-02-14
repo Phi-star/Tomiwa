@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const videos = [
-        "https://files.catbox.moe/3un2c9.mp4",
+        "https://files.catbox.moe/t9le3z.mp4",
     let currentVideo = 0;
     const videoElement = document.getElementById("background-video");
     const audio = document.getElementById("background-music");
